@@ -27,5 +27,4 @@ jobs:
       - run:
           name: Run Tests
           command: |
-              cd users-api
               ./gradlew test
