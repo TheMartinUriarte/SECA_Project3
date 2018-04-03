@@ -8,7 +8,7 @@ buildscript {
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-		classpath "com.avast.gradle:gradle-docker-compose-plugin:0.7.1"
+		classpath "com.avast.gradle:gradle-docker-compose-plugin:0.6.17"
 		/*
 		 * Reason: Updated plugin number, jcenter()
 		 * Usage: updated the plugin number and used jcenter in conjunction.
@@ -48,10 +48,12 @@ dependencies {
 	testCompile('io.rest-assured:rest-assured:3.0.6')
 }
 
-task waitForUsersAPI(type: Exec) {
-	commandLine './wait-for-api.sh','http://localhost:8080/users', 'Users API'
-}
-
 test {
-	dependsOn waitForUsersAPI
+	dependsOn cleanTest
+
+	testLogging {
+		exceptionFormat "full"
+		events "skipped", "passed", "failed"
+		displayGranularity 2
+	}
 }
