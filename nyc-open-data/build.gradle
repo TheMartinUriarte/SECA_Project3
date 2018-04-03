@@ -44,6 +44,7 @@ dependencies {
 	runtime('org.postgresql:postgresql')
 	runtime('org.springframework.boot:spring-boot-devtools')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
+	testCompile('io.rest-assured:rest-assured:3.0.6')
 }
 
 task waitForUsersAPI(type: Exec) {
